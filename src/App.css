@@ -45,6 +45,7 @@ body {
   background-color: #f3f3f3;
   margin: 0;
   padding: 0;
+  direction: rtl;
 }
 
 .container {
@@ -79,6 +80,7 @@ input {
 }
 
 button {
+
   padding: 8px 12px;
   border: none;
   background-color: #007bff;
@@ -132,7 +134,5 @@ li button:hover {
   text-align: center;
   width: 250px;
 }
-
-
 
 

@@ -1,9 +1,14 @@
+import DatePicker from "react-multi-date-picker";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
+import TimePicker from "react-multi-date-picker/plugins/time_picker";
+
 import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
   const [text, setText] = useState("");
-  const [time, setTime] = useState("");
+  const [time, setTime] = useState(null);
   const [items, setItems] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [modalText, setModalText] = useState("");
@@ -27,8 +32,10 @@ function App() {
 
       if (delay > 0) {
         setTimeout(() => {
+          new Audio("/notify.mp3").play();
           setModalText(item.text);
           setShowModal(true);
+          
         }, delay);
       }
     });
@@ -43,23 +50,27 @@ function App() {
           type="text"
           value={text}
           onChange={(e) => setText(e.target.value)}
-          placeholder="Type your reminder..."
+          placeholder="یادآوری را وارد نمایید..."
+        />
+        <DatePicker
+          calendar={persian}
+          locale={persian_fa}
+          onChange={(date) => setTime(date.toDate())}
+          format="YYYY/MM/DD HH:mm"
+          plugins={[
+            <TimePicker hideSeconds />]}
+          
         />
 
-        <input
-          type="datetime-local"
-          value={time}
-          onChange={(e) => setTime(e.target.value)}
-        />
-
-        <button onClick={addReminder}>Add</button>
+        
       </div>
-
+      <br />
+      <button onClick={addReminder}>اضافه کردن</button>
       <ul>
         {items.map((item, index) => (
           <li key={index}>
-            {item.text} — {new Date(item.time).toLocaleString()}
-            <button onClick={() => removeReminder(index)}>Delete</button>
+            {item.text} — {new Date(item.time).toLocaleString("fa-IR")}
+            <button onClick={() => removeReminder(index)}>حذف</button>
           </li>
         ))}
       </ul>
@@ -69,7 +80,7 @@ function App() {
           <div className="modal-box">
             <h2>Reminder!</h2>
             <p>{modalText}</p>
-            <button onClick={() => setShowModal(false)}>OK</button>
+            <button onClick={() => setShowModal(false)}>تایید</button>
           </div>
         </div>
       )}
