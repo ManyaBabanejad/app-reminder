@@ -40,7 +40,7 @@
 .read-the-docs {
   color: #888;
 }
-body {
+/* body {
   font-family: Arial, sans-serif;
   background-color: #f3f3f3;
   margin: 0;
@@ -135,4 +135,158 @@ li button:hover {
   width: 250px;
 }
 
+ */
+/* --- ساختار کلی صفحه --- */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "IRANSans", sans-serif;
+  background: #f7f7f7;
+  direction: rtl;
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+  color: #333;
+}
 
+/* --- کانتینر اصلی --- */
+.container {
+  width: 480px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 14px;
+  border: 1px solid #e6e6e6;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* --- عنوان --- */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #222;
+}
+
+/* --- ورودی‌ها --- */
+.input-area {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+input {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #dcdcdc;
+  outline: none;
+  font-size: 16px;
+  background: #fff;
+  transition: 0.25s;
+}
+
+input:focus {
+  border-color: #6a5acd;
+  box-shadow: 0 0 6px rgba(106, 90, 205, 0.25);
+}
+
+/* --- دکمه اصلی --- */
+button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #6a5acd;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+button:hover {
+  background: #7b6df0;
+  transform: translateY(-2px);
+}
+
+/* --- لیست یادآوری‌ها --- */
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+li {
+  background: #fff;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #e6e6e6;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  direction: rtl;
+}
+
+/* متن آیتم */
+li.done {
+  text-decoration: line-through;
+  color: #888;
+}
+
+/* دکمه‌ها کنار هم */
+li button {
+  margin-right: auto; /* دکمه‌ها برن سمت چپ */
+
+  display: flex;
+  align-items: center;
+  gap: 0;   /* فاصله صفر */
+
+
+  padding: 6px 10px;
+  font-size: 13px;
+  border-radius: 8px;
+}
+
+/* دکمه ویرایش */
+.edit-btn {
+  background: #4a90e2;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #3b7ac2;
+}
+
+/* دکمه حذف */
+.delete-btn {
+  background: #ff4d4d;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #e63b3b;
+}
+
+/* --- مودال یادآوری --- */
+.modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-box {
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  width: 300px;
+  text-align: center;
+  border: 1px solid #e6e6e6;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.modal-box button {
+  margin-top: 15px;
+  width: 100%;
+}

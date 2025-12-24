@@ -20,6 +20,12 @@ function App() {
       setTime("");
     }
   };
+  const editReminder = (index) => {
+    setText(items[index].text);
+    setTime(items[index].time);
+    removeReminder(index);
+  };
+
   const removeReminder = (index) => {
     setItems(items.filter((_, i) => i !== index));
   };
@@ -58,7 +64,7 @@ function App() {
           onChange={(date) => setTime(date.toDate())}
           format="YYYY/MM/DD HH:mm"
           plugins={[
-            <TimePicker hideSeconds />]}
+            <TimePicker hideSeconds/>]}
           
         />
 
@@ -66,14 +72,22 @@ function App() {
       </div>
       <br />
       <button onClick={addReminder}>اضافه کردن</button>
-      <ul>
-        {items.map((item, index) => (
-          <li key={index}>
-            {item.text} — {new Date(item.time).toLocaleString("fa-IR")}
-            <button onClick={() => removeReminder(index)}>حذف</button>
-          </li>
-        ))}
+      <ul>      
+        {items.map((item, index) => {
+          const isDone = new Date(item.time).getTime() < Date.now();
+      
+          return (
+            <li key={index} style={{ color: isDone ? "gray" : "black" }}>
+              {item.text} — {new Date(item.time).toLocaleString("fa-IR")}
+              {isDone && <span> ✔ انجام شد</span>}
+      
+              <button onClick={() => editReminder(index)}>ویرایش</button>
+              <button onClick={() => removeReminder(index)}>حذف</button>
+            </li>
+          );
+        })}
       </ul>
+
 
       {showModal && (
         <div className="modal-bg">
